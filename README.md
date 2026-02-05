@@ -50,7 +50,6 @@ For the intended experience, ensure the following fonts are installed on your sy
 ![Aubade Dark Mode](screenshot.png)
 
 ### Light Mode
-*Features distinct accents and clear visual hierarchy.*
 ![Aubade Light Mode](screenshot-light.png)
 
 
