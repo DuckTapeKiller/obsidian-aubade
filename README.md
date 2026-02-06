@@ -21,6 +21,11 @@ A deep, low-contrast slate palette (`#303841` base) with monochrome accents and 
 ### Light Mode (Ice & Steel)
 A cool, blue-grey palette (`#DDE6ED` base) offering a clean, architectural look reminiscent of blueprint paper.
 
+### Multiple presets through the Style Settings plugin
+
+![collage_export_FA73035C-5643-47CF-8978-608413F60E98](https://github.com/user-attachments/assets/9d568c61-0038-4739-9db6-bcba8a852c2a)
+![collage_export_6959FDE6-7D2F-488F-B831-BAECABA47340](https://github.com/user-attachments/assets/3dd955df-1d2d-4166-ba1a-7790a460339b)
+
 ## Key Features
 
 * **Dashboard Ready:** Built-in grid support for dashboard layouts, automatically handling column breaks and gap spacing.
