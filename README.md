@@ -25,6 +25,10 @@
 | **Cool**<br>![Cool](screenshots/cool.png) | **Monochrome**<br>![Monochrome](screenshots/monochrome.png) |
 | **Brutalist**<br>![Brutalist](screenshots/brutalist.png) | |
 
+## Select your favourite pattern
+
+**Paterns**<br>![Default](screenshots/paterns.png)
+
 ## Key Features
 
 * **Dashboard Ready:** Built-in grid support for dashboard layouts, automatically handling column breaks and gap spacing.
