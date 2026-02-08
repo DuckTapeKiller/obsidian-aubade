@@ -64,30 +64,31 @@ Modify the text alignment of your notes using the dropdown menu:
 * Right aligned
 * Centre aligned
 * Justified
-
 ### Note Width Control
-By default, notes are restricted to a readable width (800px). You can force specific global widths:
-* 500px to 1000px
-* Wide (1200px)
-* Full Width (100%)
 
-> **Note on Mobile:** These width constraints apply to **Desktop** only. On mobile devices, the theme ignores these classes and fits content to the screen width.
+When Obsidian's **"Readable line length"** setting is enabled, the editor width defaults to **700px**. You can adjust this global maximum width in Style Settings using a slider ranging from **500px** to **1600px**.
 
-### Line Height & Titles
-* **Line Height:** Adjust decimal line spacing between **1.0** and **3.0** (Default: 1.5).
-* **Inline Title Size:** Adjust the size of the inline title between **1.0em** and **5.0em** (Default: 2em).
+> **Note on Mobile:** These width constraints apply to **Desktop** only. On mobile devices, the theme automatically fits content to the screen width.
+
+### Typography Settings
+
+* **Line Height:** Adjust line spacing between **1.0** and **3.0** (Default: 1.5).
+* **Inline Title Size:** Adjust the size of the inline title between **1.0em** and **5.0em** (Default: 3em).
 
 ## Per-Note Overrides
 
-Use the `cssclasses` property in your frontmatter (YAML) to override global settings for specific files.
+Use the `cssclasses` property in your frontmatter (YAML) to override global settings for specific files. These classes function regardless of your global "Readable line length" setting.
 
 ### Custom Widths
+
 Useful for notes containing wide tables or diagrams:
-* `width-800`
-* `width-900`
-* `width-1000`
-* `width-1200`
-* `width-1600`
+
+* `width-800` (800px)
+* `width-900` (900px)
+* `width-1000` (1000px)
+* `width-1200` (1200px)
+* `width-1600` (1600px)
+* `full-width` (100% of pane width)
 
 ### Interface Hiding
 To hide the frontmatter and note title for a specific note:
