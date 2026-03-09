@@ -126,6 +126,30 @@ cssclasses:
 > - [[Project Y]]
 ```
 
+### CSS-Only Timelines
+
+The theme features a native, CSS-only timeline layout that transforms standard bulleted lists into a professional split-view chronology without requiring any external plugins. To activate it, add `cssclasses: custom-timeline` to your note's frontmatter.
+
+Structure your timeline as a single, continuous unordered list. Every event must consist of exactly three bullet points in this strict sequence: Date, Title, and Content. The theme will automatically remove the default bullet points, draw a vertical line, and format the items into a structured grid.
+
+**Example:**
+
+```markdown
+---
+cssclasses: custom-timeline
+---
+
+- 1950–1953
+- Land Reform Movement
+- Shortly after the establishment of the PRC, the Chinese Communist Party (CCP) launched a nationwide campaign to confiscate land from rural landlords and redistribute it to landless peasants.
+
+- 1951–1952
+- Three-Anti and Five-Anti Campaigns
+- These were urban reform movements designed to consolidate state control over the economy...
+```
+
+![timeline](screenshots/timeline.png)
+
 ## Installation
 
 ### Method 1: Community Themes (CURRENTLY PENDING REVIEW BY OBSIDIAN)
