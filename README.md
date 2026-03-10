@@ -4,6 +4,33 @@
 
 **Aubade** is a retro-brutalist theme for [Obsidian](https://obsidian.md). It prioritises strict geometry, high contrast, and tactile interactions over soft gradients and rounded corners. Designed for users who require their digital workspace to feel like a structural tool.
 
+# Table of contents
+
+<!--toc:start-->
+- [Visual Identity](#visual-identity)
+- [Colour Schemes](#colour-schemes)
+- [Select your favourite pattern](#select-your-favourite-pattern)
+- [Key Features](#key-features)
+- [Typography](#typography)
+  - [Sans Serif](#sans-serif)
+  - [Monospace](#monospace)
+- [Layout & Configuration](#layout--configuration)
+  - [Alignment](#alignment)
+  - [Note Width Control](#note-width-control)
+  - [Typography Settings](#typography-settings)
+- [Per-Note Overrides](#per-note-overrides)
+  - [Custom Widths](#custom-widths)
+  - [Interface Hiding](#interface-hiding)
+- [Dashboard & Masonry Layout](#dashboard--masonry-layout)
+  - [CSS-Only Timelines](#css-only-timelines)
+- [Installation](#installation)
+  - [Method 1: Community Themes (CURRENTLY PENDING REVIEW BY OBSIDIAN)](#method-1-community-themes-currently-pending-review-by-obsidian)
+  - [Method 2: Manual Installation](#method-2-manual-installation)
+- [Gallery](#gallery)
+  - [Dark Mode](#dark-mode)
+  - [Light Mode](#light-mode)
+<!--toc:end-->
+
 ## Visual Identity
 
 * **Strict Geometry:** A zero-radius policy applied globally. Every corner is sharp; every container is a box.
