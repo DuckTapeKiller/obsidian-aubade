@@ -1,3 +1,5 @@
+# Aubade
+
 [![GitHub Repo stars](https://img.shields.io/github/stars/ducktapekiller/obsidian-aubade?style=flat&logo=obsidian&color=%23f39c12)](https://github.com/ducktapekiller/obsidian-aubade/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/DuckTapeKiller/obsidian-aubade?logo=obsidian&color=%23f39c12)](https://github.com/DuckTapeKiller/obsidian-aubade/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/DuckTapeKiller/obsidian-aubade?logo=obsidian&color=%23f39c12)](https://github.com/DuckTapeKiller/obsidian-aubade/issues?q=is%3Aissue+is%3Aclosed)
@@ -10,7 +12,7 @@
 
 **Aubade** is a retro-brutalist theme for [Obsidian](https://obsidian.md). It prioritises strict geometry, high contrast, and tactile interactions over soft gradients and rounded corners. Designed for users who require their digital workspace to feel like a structural tool.
 
-# Table of contents
+## Table of contents
 
 1. [Visual Identity](#1-visual-identity)
 2. [Colour Schemes](#2-colour-schemes)
