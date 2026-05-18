@@ -1,7 +1,7 @@
 /* ================================================================= */
 /* AUBADE THEME by DuckTapeKiller                                    */
 /* https://github.com/DuckTapeKiller/aubade                          */
-/* 1.0.1                                                */
+/* 1.0.2                                                */
 /* ================================================================= */
 
 @font-face {
@@ -948,7 +948,7 @@ html body.obsidian-app.theme-dark {
   --text-selection: var(--raw-selection-bg);
   --text-selection-color: var(--text-normal);
   --text-highlight-bg: var(--raw-highlight-bg);
-  --text-highlight-color: #000000;
+  --text-highlight-color: #FFFFFF;
 
   /* === BORDERS & DIVIDERS === */
   --aubade-divider-color: var(--raw-border);
@@ -988,7 +988,7 @@ html body.obsidian-app.theme-dark {
   --tab-active-bg-sidebar: #000000;
   --tab-hover-bg-doc: var(--raw-hover-bg);
   --tab-hover-bg-ui: var(--raw-hover-bg);
-  --tab-hover-text-ui: var(--raw-text-primary);
+  --tab-hover-text-ui: #000000;
   --tab-text-color: var(--raw-text-primary);
   --tab-text-color-active: var(--raw-text-primary);
   --tab-text-color-focused: var(--raw-text-primary);
@@ -1090,7 +1090,7 @@ html body.obsidian-app.theme-light {
   --text-muted: var(--raw-text-secondary);
   --text-faint: var(--raw-text-secondary);
   --text-accent: var(--raw-interactive);
-  --text-on-accent: var(--raw-inverse);
+  --text-on-accent: #000000;
   --color-dot: var(--raw-text-primary);
   --color-text-day: var(--raw-text-primary);
   --color-arrow: var(--raw-text-primary);
@@ -1685,6 +1685,12 @@ html body.obsidian-app .workspace-drawer-vault-actions .clickable-icon:active {
   box-shadow: none;
 }
 
+/* Mobile exception: keep the "button" shadow, but don't depress on press */
+html body.obsidian-app.is-mobile .workspace-drawer-vault-actions .clickable-icon:active {
+  transform: translate(0, 0);
+  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-shadow-color);
+}
+
 /* ================================================================= */
 /* 9. BUTTONS                                                        */
 /* ================================================================= */
@@ -1727,7 +1733,7 @@ html body.obsidian-app .setting-item-control button.mod-cta:active {
 @media (hover: hover) {
   html body.obsidian-app .modal button.mod-cta:hover {
     background-color: var(--interactive-accent-hover) !important;
-    color: var(--raw-inverse) !important;
+    color: var(--text-on-accent) !important;
     text-shadow: none;
   }
 }
@@ -2174,7 +2180,7 @@ html body.obsidian-app :is(input[type="text"],
 
 html body.obsidian-app .search-input-container :is(.input-right-decorator, .clickable-icon).is-active {
   background-color: var(--text-selection);
-  color: #ffffff;
+  color: var(--text-selection-color);
   border-radius: 0;
   z-index: 10;
 }
@@ -2801,6 +2807,13 @@ html body.obsidian-app.is-mobile .workspace-drawer-header-icon.mod-settings:acti
   filter: none !important;
 }
 
+/* Mobile drawer tab selector: keep button shadow, but don't "press" translate */
+html body.obsidian-app.is-mobile .workspace-drawer-tab-select:active,
+html body.obsidian-app.is-mobile .workspace-drawer-tab-select.is-active {
+  transform: none !important;
+  box-shadow: 4px 4px 0 0 var(--aubade-divider-color) !important;
+}
+
 html body.obsidian-app.is-mobile.theme-dark :is(.workspace-drawer-tab-options-list,
   .workspace-drawer-tab-select,
   .nav-buttons-container .clickable-icon,
@@ -2935,9 +2948,7 @@ html body.obsidian-app.is-mobile .nav-buttons-container .clickable-icon {
   background-color: var(--background-secondary);
 }
 
-html body.obsidian-app.is-mobile .mobile-navbar.mod-raised:active,
-html body.obsidian-app.is-mobile .mobile-navbar.mod-raised:has(.mobile-navbar-action:active),
-html body.obsidian-app.is-mobile .mobile-navbar.mod-raised:has(.clickable-icon:active) {
+html body.obsidian-app.is-mobile .mobile-navbar.mod-raised:active {
   transition: var(--button-transition);
   transform: translate(var(--button-press), var(--button-press));
   box-shadow: none;
@@ -3272,7 +3283,7 @@ html body.obsidian-app .hide-all .frontmatter-section-container,
 html body.obsidian-app .hide-all .frontmatter,
 html body.obsidian-app .hide-all .cm-frontmatter-container,
 html body.obsidian-app .hide-all .inline-title {
-  display: none __IMPORTANT_PROTECTED__;
+  display: none !important;
   visibility: hidden !important;
   height: 0 !important;
   padding: 0 !important;
@@ -3333,10 +3344,17 @@ html body.obsidian-app body:not(.is-mobile) .dashboard.hide-all .view-header .cl
   html body.obsidian-app .workspace-leaf-content .dashboard .callout-content li>a.internal-link:hover,
   html body.obsidian-app .workspace-leaf-content .dashboard .callout-content li>a.external-link:hover,
   html body.obsidian-app .workspace-leaf-content .dashboard .callout-content li> :is(.internal-link, .external-link):hover {
-    background-color: var(--aubade-divider-color);
-    color: var(--raw-inverse);
-    box-shadow: 2px 2px 0 0 var(--background-primary), 4px 4px 0 0 var(--aubade-divider-color);
+    background-color: var(--interactive-accent-hover);
+    color: var(--text-on-accent);
+    box-shadow: 2px 2px 0 0 var(--background-primary), 4px 4px 0 0 var(--interactive-accent-hover);
     transform: translate(-1px, -1px);
+  }
+
+  /* Reader preset (Dark Mode): hover background is light, so force dark text for contrast */
+  html body.obsidian-app.theme-dark.preset-reader .workspace-leaf-content .dashboard .callout-content li>a.internal-link:hover,
+  html body.obsidian-app.theme-dark.preset-reader .workspace-leaf-content .dashboard .callout-content li>a.external-link:hover,
+  html body.obsidian-app.theme-dark.preset-reader .workspace-leaf-content .dashboard .callout-content li> :is(.internal-link, .external-link):hover {
+    color: #000000;
   }
 }
 
@@ -3370,7 +3388,6 @@ html body.obsidian-app body:not(.is-mobile) .dashboard-grid {
   z-index: 1 !important;
 }
 
-html body.obsidian-app body:has(.dashboard:hover) .tooltip,
 html body.obsidian-app .dashboard .tooltip,
 html body.obsidian-app .dashboard .aria-label {
   display: none !important;
@@ -3698,13 +3715,11 @@ html body.obsidian-app .tree-item-children::before {
   pointer-events: none;
 }
 
-html body.obsidian-app .cm-hashtag:has(+ .cm-hashtag) {
-  border-right: none;
+html body.obsidian-app .cm-hashtag:not(.cm-hashtag-end) {
   padding-right: 0;
 }
 
 html body.obsidian-app .cm-hashtag+.cm-hashtag {
-  border-left: none;
   padding-left: 0;
 }
 
@@ -3806,8 +3821,8 @@ html body.obsidian-app .nav-buttons-container .clickable-icon.is-active {
   color: var(--text-normal);
 }
 
-.clickable-icon.is-active:not(:hover),
-.search-input-container .clickable-icon.is-active:not(:hover) {
+.clickable-icon.is-active:not(:hover):not(.input-right-decorator),
+.search-input-container .clickable-icon.is-active:not(:hover):not(.input-right-decorator) {
   background-color: transparent;
   box-shadow: none;
   border-color: transparent;
@@ -3885,7 +3900,7 @@ html body.obsidian-app .clickable-icon.mod-destructive {
 
   html body.obsidian-app .mod-cta:hover {
     background-color: var(--interactive-accent-hover) !important;
-    color: var(--raw-inverse) !important;
+    color: var(--text-on-accent) !important;
   }
 }
 
@@ -3965,9 +3980,13 @@ html body.obsidian-app input[type="color"] {
 /* 27. MISCELLANEOUS                                                 */
 /* ================================================================= */
 
-html body.obsidian-app .clickable-icon:has(.svg-icon.help),
-html body.obsidian-app .side-dock-ribbon-action:has(.svg-icon.help) {
+html body.obsidian-app .clickable-icon[aria-label*="help" i],
+html body.obsidian-app .side-dock-ribbon-action[aria-label*="help" i] {
   display: none;
+}
+
+html body.obsidian-app .workspace-drawer-vault-actions > .clickable-icon:first-of-type {
+  display: none !important;
 }
 
 html body.obsidian-app body.hide-ribbon:not(.is-mobile) .workspace-ribbon {
@@ -4079,10 +4098,25 @@ html body.obsidian-app.theme-dark .menu-item.mod-checked .menu-item-icon {
   color: #000000;
 }
 
+html body.obsidian-app.is-mobile.theme-dark .menu .menu-item.mod-checked .menu-item-icon,
+html body.obsidian-app.is-mobile.theme-dark .menu .menu-item.mod-checked .menu-item-icon svg {
+  color: #000000;
+  stroke: currentColor;
+}
+
 /* Hover state: background transparent, border visible */
 html body.obsidian-app .menu-item.mod-checked.selected,
 html body.obsidian-app .menu-item.mod-checked:hover {
   background-color: transparent;
+  border-color: var(--toggle-on-color);
+}
+
+/* Mobile menu checked items should keep the toggle background even when selected/active */
+html body.obsidian-app.is-mobile .menu .menu-item.mod-checked,
+html body.obsidian-app.is-mobile .menu .menu-item.mod-checked.selected,
+html body.obsidian-app.is-mobile .menu .menu-item.mod-checked.is-selected,
+html body.obsidian-app.is-mobile .menu .menu-item.mod-checked:active {
+  background-color: var(--toggle-on-color);
   border-color: var(--toggle-on-color);
 }
 
@@ -4364,6 +4398,8 @@ html body.obsidian-app.theme-dark.preset-warm {
   --background-modifier-hover: #5A4530;
   --raw-code-bg: #1E1610;
   --raw-inverse: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #4A3A55;
 }
 
@@ -4395,6 +4431,9 @@ html body.obsidian-app.theme-dark.preset-cool {
   --background-modifier-hover: #2A4A4A;
   --raw-code-bg: #2A5050;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #4A3A2F;
 }
 
@@ -4411,6 +4450,7 @@ html body.obsidian-app.preset-mono {
   --background-modifier-hover: #C0C0C0;
   --raw-code-bg: #E5E5E5;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #FFFFFF;
   --interactive-accent-hover: #000000;
   --metadata-bg-mobile-light: #d3aee9;
 }
@@ -4427,6 +4467,8 @@ html body.obsidian-app.theme-dark.preset-mono {
   --background-modifier-hover: #333333;
   --raw-code-bg: #333333;
   --raw-inverse: #000000;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
   --interactive-accent-hover: #FFFFFF;
   --metadata-bg-mobile-dark: #214051;
 }
@@ -4459,6 +4501,8 @@ html body.obsidian-app.theme-dark.preset-ocean {
   --background-modifier-hover: #2A4055;
   --raw-code-bg: #152535;
   --raw-inverse: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #4A2A2A;
 }
 
@@ -4490,6 +4534,8 @@ html body.obsidian-app.theme-dark.preset-forest {
   --background-modifier-hover: #2A4030;
   --raw-code-bg: #152018;
   --raw-inverse: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #3A2A3F;
 }
 
@@ -4506,6 +4552,8 @@ html body.obsidian-app.preset-lavender {
   --background-modifier-hover: #CE93D8;
   --raw-code-bg: #C098D0;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #FFFFFF;
+  --tab-hover-text-ui: #000000;
   --metadata-bg-mobile-light: #FFF9D1;
 }
 
@@ -4521,6 +4569,9 @@ html body.obsidian-app.theme-dark.preset-lavender {
   --background-modifier-hover: #3A2A44;
   --raw-code-bg: #201525;
   --raw-inverse: #000000;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #3A4A3A;
 }
 
@@ -4552,6 +4603,8 @@ html body.obsidian-app.theme-dark.preset-sunset {
   --background-modifier-hover: #4A3028;
   --raw-code-bg: #201510;
   --raw-inverse: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #2A3A4A;
 }
 
@@ -4568,6 +4621,8 @@ html body.obsidian-app.preset-midnight {
   --background-modifier-hover: #9FA8DA;
   --raw-code-bg: #9DA8D8;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #FFFFFF;
+  --tab-hover-text-ui: #000000;
   --metadata-bg-mobile-light: #FFF3D8;
 }
 
@@ -4583,6 +4638,9 @@ html body.obsidian-app.theme-dark.preset-midnight {
   --background-modifier-hover: #252A40;
   --raw-code-bg: #202840;
   --raw-inverse: #000000;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #3A2F24;
 }
 
@@ -4599,6 +4657,8 @@ html body.obsidian-app.preset-brutalist {
   --background-modifier-hover: #a2a2a2;
   --raw-code-bg: #e1e1e1;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #FFFFFF;
+  --tab-hover-text-ui: #FFFFFF;
   --metadata-bg-mobile-light: #efb880;
 }
 
@@ -4614,6 +4674,9 @@ html body.obsidian-app.theme-dark.preset-brutalist {
   --background-modifier-hover: #565656;
   --raw-code-bg: #1f1f1f;
   --raw-inverse: #000000;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #000000;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #384d60;
 }
 
@@ -4630,6 +4693,7 @@ html body.obsidian-app.preset-solarized {
   --background-modifier-hover: #D3CBB8;
   --raw-code-bg: #C8BC98;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #000000;
   --metadata-bg-mobile-light: #F3E8FF;
 }
 
@@ -4645,6 +4709,9 @@ html body.obsidian-app.theme-dark.preset-solarized {
   --background-modifier-hover: #0A4050;
   --raw-code-bg: #0A4A58;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #15504b;
 }
 
@@ -4661,6 +4728,8 @@ html body.obsidian-app.preset-reader {
   --background-modifier-hover: #D8D8D0;
   --raw-code-bg: #C8C8BE;
   --raw-inverse: #FFFFFF;
+  --text-on-accent: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-light: #E8F0D8;
 }
 
@@ -4675,7 +4744,10 @@ html body.obsidian-app.theme-dark.preset-reader {
   --text-highlight-color: var(--body-font-color-dark);
   --background-modifier-hover: #3A3A38;
   --raw-code-bg: #363634;
-  --raw-inverse: #000000;
+  --raw-inverse: var(--raw-bg-secondary);
+  --text-on-accent: #1E1E1C;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #2A3A2A;
 }
 
@@ -4686,8 +4758,8 @@ html body.obsidian-app.preset-amber {
   --raw-interactive: #000000;
   --raw-hover-bg: #332300;
   --raw-border: #000000;
-  --raw-selection-bg: #926400;
-  --text-selection-color: #FFB000;
+  --raw-selection-bg: #a06f00;
+  --text-selection-color: #000000;
   --raw-highlight-bg: #92bbdb;
   --text-highlight-color: #000000;
   --background-modifier-hover: #FFC107;
@@ -4695,13 +4767,14 @@ html body.obsidian-app.preset-amber {
   --raw-text-primary: #000000;
   --raw-text-secondary: #252525;
   --raw-inverse: #FFB000;
+  --text-on-accent: #FFB000;
+  --tab-hover-text-ui: #FFFFFF;
   --metadata-bg-mobile-light: #92bbdb;
 }
 
 html body.obsidian-app.theme-dark.preset-amber {
   --raw-bg-primary: #050505;
   --raw-bg-secondary: #000000;
-  --raw-interactive: #FFB000;
   --raw-hover-bg: #FFB000;
   --raw-border: #805500;
   --raw-selection-bg: #CC8E00;
@@ -4714,6 +4787,9 @@ html body.obsidian-app.theme-dark.preset-amber {
   --raw-text-secondary: #CC8E00;
   --raw-interactive: #000000;
   --raw-inverse: #000000;
+  --text-on-accent: #000000;
+  --tab-hover-text-ui: #FFFFFF;
+  --interactive-accent-hover: var(--raw-hover-bg);
   --metadata-bg-mobile-dark: #1A2A3A;
 }
 
