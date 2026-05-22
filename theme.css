@@ -1,7 +1,7 @@
 /* ================================================================= */
 /* AUBADE THEME by DuckTapeKiller                                    */
 /* https://github.com/DuckTapeKiller/aubade                          */
-/* 1.0.2                                                */
+/* 1.0.3                                                */
 /* ================================================================= */
 
 @font-face {
@@ -3073,10 +3073,20 @@ html body.obsidian-app.is-mobile .modal-setting-back-button,
 html body.obsidian-app .modal-close-button,
 html body.obsidian-app .modal-setting-back-button {
   border: 2px solid var(--aubade-divider-color) !important;
-  box-shadow: 4px 4px 0 0 var(--aubade-divider-color) !important;
+  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-divider-color) !important;
   background-color: var(--background-secondary) !important;
   display: flex !important;
   opacity: 1 !important;
+}
+
+@media (hover: hover) {
+  html body.obsidian-app :is(.modal-close-button, .modal-setting-back-button):hover {
+    box-shadow: var(--button-shadow-hover-offset) var(--button-shadow-hover-offset) 0 0 var(--aubade-divider-color) !important;
+  }
+}
+
+html body.obsidian-app :is(.modal-close-button, .modal-setting-back-button):active {
+  box-shadow: none !important;
 }
 
 html body.obsidian-app .vertical-tab-nav-item {
@@ -3781,18 +3791,18 @@ html body.obsidian-app .nav-buttons-container .clickable-icon svg {
 }
 
 @media (hover: hover) {
+  /* Separate the active state overrides cleanly */
+  html body.obsidian-app .sidebar-toggle-button:active,
+  html body.obsidian-app .workspace-tab-header-new-tab:active,
+  html body.obsidian-app .workspace-tab-header-tab-list:active {
+    transform: none !important;
+    box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-divider-color) !important;
+  }
 
+  /* Corrected view action hover block */
   html body.obsidian-app .view-actions .clickable-icon:hover,
   html body.obsidian-app .view-header-nav-buttons .clickable-icon:hover,
   html body.obsidian-app .nav-buttons-container .clickable-icon:hover {
-
-    html body.obsidian-app .sidebar-toggle-button:active,
-    html body.obsidian-app .workspace-tab-header-new-tab:active,
-    html body.obsidian-app .workspace-tab-header-tab-list:active {
-      transform: none !important;
-      box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-divider-color) !important;
-    }
-
     transform: translate(var(--button-lift), var(--button-lift));
     box-shadow: var(--button-shadow-hover-offset) var(--button-shadow-hover-offset) 0 0 var(--aubade-divider-color);
     background-color: var(--background-secondary);
