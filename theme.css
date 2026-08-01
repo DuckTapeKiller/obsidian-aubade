@@ -1962,11 +1962,11 @@ html body.obsidian-app .callout-title {
   background-image: var(--top-pattern-img);
   background-size: var(--top-pattern-size);
   background-position: var(--top-pattern-pos);
-  background-color: rgba(var(--callout-color), 0.15);
+  background-color: color-mix(in srgb, var(--callout-color) 15%, transparent);
 }
 
 html body.obsidian-app .callout-title-inner {
-  background-color: color-mix(in srgb, rgb(var(--callout-color)), var(--background-primary) 85%);
+  background-color: color-mix(in srgb, var(--callout-color), var(--background-primary) 85%);
   border: none;
   padding: 2px 8px;
   display: inline-block;
@@ -1983,7 +1983,7 @@ html body.obsidian-app .callout-icon {
 }
 
 html body.obsidian-app .callout[data-callout="quote"] {
-  --callout-color: 158, 158, 158;
+  --callout-color: rgb(158, 158, 158);
   border: var(--border-width) solid var(--aubade-divider-color);
 }
 
@@ -1991,31 +1991,31 @@ html body.obsidian-app .callout[data-callout="quote"] {
 html body.obsidian-app .callout[data-callout="note"],
 html body.obsidian-app .callout[data-callout="info"],
 html body.obsidian-app .callout[data-callout="todo"] {
-  --callout-color: 8, 109, 221;
+  --callout-color: rgb(8, 109, 221);
 }
 
 html body.obsidian-app .callout[data-callout="tip"] {
-  --callout-color: 0, 191, 188;
+  --callout-color: rgb(0, 191, 188);
 }
 
 html body.obsidian-app .callout[data-callout="success"] {
-  --callout-color: 8, 185, 78;
+  --callout-color: rgb(8, 185, 78);
 }
 
 html body.obsidian-app .callout[data-callout="question"],
 html body.obsidian-app .callout[data-callout="warning"] {
-  --callout-color: 236, 163, 0;
+  --callout-color: rgb(236, 163, 0);
 }
 
 html body.obsidian-app .callout[data-callout="failure"],
 html body.obsidian-app .callout[data-callout="danger"],
 html body.obsidian-app .callout[data-callout="bug"],
 html body.obsidian-app .callout[data-callout="error"] {
-  --callout-color: 233, 49, 71;
+  --callout-color: rgb(233, 49, 71);
 }
 
 html body.obsidian-app .callout[data-callout="example"] {
-  --callout-color: 120, 82, 238;
+  --callout-color: rgb(120, 82, 238);
 }
 
 
