@@ -1,7 +1,7 @@
 /* ================================================================= */
 /* AUBADE THEME by DuckTapeKiller                                    */
 /* https://github.com/DuckTapeKiller/aubade                          */
-/* 1.0.5                                                */
+/* 1.0.6                                               */
 /* ================================================================= */
 
 @font-face {
@@ -740,39 +740,39 @@ settings:
 /* ================================================================= */
 /* TABLE OF CONTENTS                                                 */
 /* ----------------------------------------------------------------- */
-/*   01  Global Geometry & Layout....................   line 469     */
-/*   02  Dark Mode Colours...........................   line 604     */
-/*   03  Light Mode Colours..........................   line 777     */
-/*   04  Text Selection & Highlighting...............   line 948     */
-/*   05  Lists & Markers.............................   line 967     */
-/*   06  Workspace Tabs..............................   line 999     */
-/*   07  Header Icon Active States...................  line 1141     */
-/*   08  Hover & Interactive States..................  line 1155     */
-/*   09  Sidebar Toggle Button.......................  line 1302     */
-/*   10  Settings Icon...............................  line 1348     */
-/*   11  Modal Buttons...............................  line 1422     */
-/*   12  Status Bar..................................  line 1490     */
-/*   13  Calendar Plugin.............................  line 1512     */
-/*   14  Typography..................................  line 1565     */
-/*   15  Callouts....................................  line 1684     */
-/*   16  Dragged Items...............................  line 1800     */
-/*   17  Forms & Inputs..............................  line 1818     */
-/*   18  Layout & Width..............................  line 2111     */
-/*   19  Tables & Bases..............................  line 2229     */
-/*   20  Mobile Layout...............................  line 2328     */
-/*   21  Modals, Settings & Menus....................  line 2897     */
-/*   22  Graph & Canvas..............................  line 3087     */
-/*   23  Dashboard Cssclass..........................  line 3169     */
-/*   24  Header Patterns.............................  line 3402     */
-/*   25  Sidebar Vertical Tabs.......................  line 3554     */
-/*   26  Tags & Pills................................  line 3616     */
-/*   27  View Header Buttons.........................  line 3688     */
-/*   28  Global Anti-Roundness.......................  line 3771     */
-/*   29  Autohide Ribbon, Window Chrome & Extras.....  line 3919     */
-/*   30  Timeline Cssclass - Desktop.................  line 4177     */
-/*   31  Timeline Cssclass - Mobile..................  line 4336     */
-/*   32  Colour Presets..............................  line 4403     */
-/*   33  Excalidraw Compatibility....................  line 4849     */
+/*   01  Global Geometry & Layout....................   line 471     */
+/*   02  Dark Mode Colours...........................   line 606     */
+/*   03  Light Mode Colours..........................   line 779     */
+/*   04  Text Selection & Highlighting...............   line 950     */
+/*   05  Lists & Markers.............................   line 969     */
+/*   06  Workspace Tabs..............................  line 1001     */
+/*   07  Header Icon Active States...................  line 1143     */
+/*   08  Hover & Interactive States..................  line 1157     */
+/*   09  Sidebar Toggle Button.......................  line 1304     */
+/*   10  Settings Icon...............................  line 1350     */
+/*   11  Modal Buttons...............................  line 1424     */
+/*   12  Status Bar..................................  line 1492     */
+/*   13  Calendar Plugin.............................  line 1514     */
+/*   14  Typography..................................  line 1567     */
+/*   15  Callouts....................................  line 1686     */
+/*   16  Dragged Items...............................  line 1802     */
+/*   17  Forms & Inputs..............................  line 1820     */
+/*   18  Layout & Width..............................  line 2113     */
+/*   19  Tables & Bases..............................  line 2231     */
+/*   20  Mobile Layout...............................  line 2330     */
+/*   21  Modals, Settings & Menus....................  line 2904     */
+/*   22  Graph & Canvas..............................  line 3077     */
+/*   23  Dashboard Cssclass..........................  line 3159     */
+/*   24  Header Patterns.............................  line 3392     */
+/*   25  Sidebar Vertical Tabs.......................  line 3544     */
+/*   26  Tags & Pills................................  line 3606     */
+/*   27  View Header Buttons.........................  line 3678     */
+/*   28  Global Anti-Roundness.......................  line 3759     */
+/*   29  Autohide Ribbon, Window Chrome & Extras.....  line 3907     */
+/*   30  Timeline Cssclass - Desktop.................  line 4165     */
+/*   31  Timeline Cssclass - Mobile..................  line 4324     */
+/*   32  Colour Presets..............................  line 4391     */
+/*   33  Excalidraw Compatibility....................  line 4837     */
 /* ----------------------------------------------------------------- */
 /*   Sub-sections use a  -- Title --  bar; groups use === NAME ===   */
 /* ================================================================= */
@@ -2725,7 +2725,12 @@ html body.obsidian-app.is-mobile.theme-dark .menu .menu-item:not(.is-warning) .m
 
 
 /* -- Modals & community items ------------------------------------- */
-html body.obsidian-app.is-mobile.theme-light .modal .mod-raised {
+/* Flattens Obsidian's stock raised chrome inside mobile modals. The close,
+   header and back buttons carry .mod-raised too but are framed with the rest
+   of the button family in 28; they are excluded here because this selector
+   outranks that frame, and without the exclusion they lose border and shadow
+   on mobile. */
+html body.obsidian-app.is-mobile.theme-light .modal .mod-raised:not(:is(.modal-close-button, .modal-header-button, .modal-setting-back-button)) {
   border: none;
   box-shadow: none;
 }
@@ -3250,34 +3255,12 @@ html body.obsidian-app.is-mobile .plugin-sync::after {
   }
 }
 
-/* FINAL OVERRIDE: Restore border and shadow for Modal Close, Header and Back
-   buttons. Obsidian 1.13 renders the settings close button as
-   .modal-header-button, so it has to be named here or it keeps the stock
-   translucent raised style while the back button beside it gets the frame.
-   Deliberately no `display` override: Obsidian hides these buttons in the
-   pop-out settings window, which already has the OS close control, and forcing
-   them visible leaves a stray X straddling the titlebar. */
-
-/* -- Close, back & header buttons --------------------------------- */
-html body.obsidian-app :is(.modal-close-button,
-  .modal-header-button,
-  .modal-setting-back-button) {
-  border: 2px solid var(--aubade-divider-color) !important;
-  box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-divider-color) !important;
-  background-color: var(--background-secondary);
-  opacity: 1;
-}
-
-@media (hover: hover) {
-  html body.obsidian-app :is(.modal-close-button, .modal-header-button, .modal-setting-back-button):hover {
-    box-shadow: var(--button-shadow-hover-offset) var(--button-shadow-hover-offset) 0 0 var(--aubade-divider-color);
-  }
-}
-
-html body.obsidian-app :is(.modal-close-button, .modal-header-button, .modal-setting-back-button):active {
-  box-shadow: none;
-}
-
+/* Close, back and header buttons are framed with the rest of the button
+   family in 28, which is later in the file and already outranks Obsidian's
+   stock translucent `mod-raised` style. An earlier copy of those declarations
+   lived here carrying `!important`, which froze the resting shadow: the press
+   and hover rules in 28 could never repaint it, so the shadow travelled with
+   the button instead of staying put and letting the button sink into it. */
 
 /* -- Settings navigation tabs ------------------------------------- */
 html body.obsidian-app .vertical-tab-nav-item {
@@ -3324,9 +3307,14 @@ html body.obsidian-app .mod-settings .setting-items {
   border-radius: 0;
 }
 
+/* Focus must not touch the shadow. Rest, hover and press own that channel
+   between them; repainting it here is what made a button's frame vanish for
+   as long as it kept focus after a click, and made the delete button open
+   flat because Obsidian focuses it on open. Obsidian's stock focus ring is
+   itself a box-shadow, but the theme's own frame already outranks it, so
+   nothing needs resetting here and only the outline is suppressed. */
 html body.obsidian-app .modal button:focus,
 html body.obsidian-app .modal button:focus-visible {
-  box-shadow: none;
   outline: none;
 }
 
@@ -4032,13 +4020,11 @@ html body.obsidian-app .nav-buttons-container .clickable-icon svg {
 }
 
 @media (hover: hover) {
-  /* Separate the active state overrides cleanly */
-  html body.obsidian-app .sidebar-toggle-button:active,
-  html body.obsidian-app .workspace-tab-header-new-tab:active,
-  html body.obsidian-app .workspace-tab-header-tab-list:active {
-    transform: none;
-    box-shadow: var(--button-shadow-offset) var(--button-shadow-offset) 0 0 var(--aubade-divider-color);
-  }
+  /* The press state for these three lives in 07, which keeps them flat.
+     A duplicate of those selectors sat here re-adding the offset shadow;
+     being later in the file it won, so clicking the sidebar toggle, the
+     new-tab button or the tab-list chevron popped a hard 4px shadow beside
+     the icon that stayed for as long as the press lasted. */
 
   /* Corrected view action hover block */
   html body.obsidian-app .view-actions .clickable-icon:hover,
@@ -4172,7 +4158,7 @@ html body.obsidian-app .full-calendar-toolbar-item:active,
 html body.obsidian-app .mod-cta:active,
 html body.obsidian-app .mod-warning:active,
 html body.obsidian-app .mod-destructive:active {
-  transform: translate(2px, 2px);
+  transform: translate(var(--button-press), var(--button-press));
   box-shadow: none;
 }
 
