@@ -1,7 +1,7 @@
 /* ================================================================= */
 /* AUBADE THEME by DuckTapeKiller                                    */
 /* https://github.com/DuckTapeKiller/aubade                          */
-/* 1.0.6                                               */
+/* 1.0.7                                               */
 /* ================================================================= */
 
 @font-face {
@@ -853,7 +853,8 @@ body.obsidian-app {
   --file-line-width: var(--editor-width);
   --icon-size: 20px;
   --dashboard-col-width: 300px;
-  --dashboard-gap: 8px;
+  --dashboard-gap: 16px;
+  --dashboard-max-width: 1400px;
   --inline-title-alignment: center;
 
   /* === CALLOUT HUES === */
@@ -3489,13 +3490,11 @@ html body.obsidian-app .hide-all .inline-title {
 }
 
 /* -- Content padding ---------------------------------------------- */
-html body.obsidian-app:not(.is-mobile) .dashboard .markdown-preview-section,
-html body.obsidian-app:not(.is-mobile) .dashboard .markdown-source-view .cm-content {
+html body.obsidian-app:not(.is-mobile) .dashboard .markdown-preview-section {
   padding-top: 40px;
 }
 
-html body.obsidian-app.is-mobile .dashboard .markdown-preview-section,
-html body.obsidian-app.is-mobile .dashboard .markdown-source-view .cm-content {
+html body.obsidian-app.is-mobile .dashboard .markdown-preview-section {
   padding-top: var(--dashboard-gap);
 }
 
@@ -3554,21 +3553,116 @@ html body.obsidian-app:not(.is-mobile) .workspace-leaf-content:has(.dashboard.hi
 }
 
 /* -- Column grid -------------------------------------------------- */
-html body.obsidian-app .dashboard .markdown-preview-section,
-html body.obsidian-app .dashboard .markdown-source-view .cm-content,
-html body.obsidian-app .dashboard-grid {
-  max-width: 1400px !important;
+/* Cards keep one width everywhere (--dashboard-col-width) and stack in columns
+   at their own height, so no card carries empty space. The column box is sized
+   to a whole number of columns and centred, so its edges are the cards' edges.
+
+   Columns that fit: the width available, capped by the note's width class (or
+   --dashboard-max-width), rounded down to whole card-plus-gap steps. Columns
+   used: that, but never more than the longest run of cards, so one or two
+   cards sit centred instead of filling the first columns of a wider box.
+
+   Not a grid: a grid row is as tall as its tallest card, which pads every
+   shorter card with empty space. Where round() is unsupported the width
+   stays 100%. */
+html body.obsidian-app .dashboard:is(.width-800, .width-900, .width-1000, .width-1200, .width-1600, .full-width) {
+  --dashboard-max-width: var(--editor-width);
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section {
+  --dashboard-cards: 99;
+  --dashboard-step: calc(var(--dashboard-col-width) + var(--dashboard-gap));
+  display: block;
+  columns: var(--dashboard-col-width) auto;
+  column-gap: var(--dashboard-gap);
+  box-sizing: border-box;
+  width: 100%;
+  width: calc(var(--dashboard-gap) + max(var(--dashboard-step), min(var(--dashboard-cards) * var(--dashboard-step), round(down, min(100%, var(--dashboard-max-width)) - var(--dashboard-gap), var(--dashboard-step)))));
+  max-width: 100% !important;
   margin: 0 auto;
   padding-left: var(--dashboard-gap);
   padding-right: var(--dashboard-gap);
   padding-bottom: 150px !important;
   font-family: var(--font-ui);
-  display: block;
-  width: 100%;
-  column-gap: var(--dashboard-gap);
-  columns: var(--dashboard-col-width) auto;
-  grid-template-columns: none;
-  grid-auto-rows: auto;
+}
+
+/* The cap above: the most cards in one unbroken run. A heading or text
+   between cards starts a new run, so a dashboard split into groups is only as
+   wide as its largest group. A note with no cards is not capped. It only
+   matters while a run is shorter than the columns that fit, so counting stops
+   at twelve. */
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div) {
+  --dashboard-cards: 1;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div) {
+  --dashboard-cards: 2;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div) {
+  --dashboard-cards: 3;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 4;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 5;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 6;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 7;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 8;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 9;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 10;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 11;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 12;
+}
+
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section:has(> .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div + .el-div) {
+  --dashboard-cards: 99;
+}
+
+/* Everything that is not a card spans all columns: the spacer, header,
+   frontmatter and footer, and any heading or text written between cards. */
+html body.obsidian-app .markdown-preview-view.dashboard .markdown-preview-section > :not(:has(> .callout)) {
+  column-span: all;
+}
+
+/* A hand-written <div class="dashboard-grid"> has no spanning rows, so a plain
+   auto-fit grid centres whatever it holds. */
+html body.obsidian-app .dashboard-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(min(100%, var(--dashboard-col-width)), var(--dashboard-col-width)));
+  justify-content: center;
+  align-items: start;
+  gap: var(--dashboard-gap);
+  max-width: var(--dashboard-max-width) !important;
+  margin: 0 auto;
+  padding-left: var(--dashboard-gap);
+  padding-right: var(--dashboard-gap);
+  padding-bottom: 150px !important;
+  font-family: var(--font-ui);
 }
 
 html body.obsidian-app .markdown-source-view.dashboard {
@@ -3578,7 +3672,6 @@ html body.obsidian-app .markdown-source-view.dashboard {
 }
 
 html body.obsidian-app:not(.is-mobile) .dashboard .markdown-preview-section,
-html body.obsidian-app:not(.is-mobile) .dashboard .markdown-source-view .cm-content,
 html body.obsidian-app:not(.is-mobile) .dashboard-grid {
   position: relative;
   z-index: 1;
@@ -3596,8 +3689,7 @@ html body.obsidian-app .dashboard .aria-label {
 /* -- Cards -------------------------------------------------------- */
 html body.obsidian-app .dashboard .callout {
   display: block;
-  break-inside: avoid-column;
-  page-break-inside: avoid;
+  break-inside: avoid;
   width: 100%;
   margin-top: 0;
   margin-bottom: var(--dashboard-gap);
@@ -3615,10 +3707,22 @@ html body.obsidian-app .dashboard .callout {
 }
 
 @media (hover: hover) {
+  /* Cards rise half as far as buttons do. The shadow grows by the same amount,
+     so its far corner stays put. */
   body:not(.is-mobile) .dashboard .callout:hover {
-    transform: translate(var(--button-lift), var(--button-lift));
-    box-shadow: 6px 6px 0 0 var(--aubade-shadow-color);
+    transform: translate(calc(var(--button-lift) / 2), calc(var(--button-lift) / 2));
+    box-shadow: calc(4px - var(--button-lift) / 2) calc(4px - var(--button-lift) / 2) 0 0 var(--aubade-shadow-color);
   }
+}
+
+/* Live Preview stays one column: the blank lines between callouts are
+   editable lines, and in a grid each one would force its own row. Cards take
+   their reading-view width there and sit centred. Obsidian zeroes every margin
+   on the editor's direct children with !important, since vertical margins would
+   break its height measurements; side margins do not, so these may override it. */
+html body.obsidian-app .markdown-source-view.dashboard .cm-embed-block.cm-callout {
+  max-width: var(--dashboard-col-width);
+  margin-inline: auto !important;
 }
 
 
@@ -3760,7 +3864,11 @@ body:not(.is-mobile) .sidebar-toggle-button.mod-right {
   z-index: 0 !important;
 }
 
-.workspace-ribbon.mod-left::before {
+/* Obsidian 1.14 names the ribbon mod-primary instead of mod-left (the sidebars
+   flip in RTL). The sidebar splits and toggle buttons carry both names, but the
+   ribbon only gets the new one, so every ribbon selector matches both until
+   minAppVersion reaches 1.14. */
+.workspace-ribbon:is(.mod-left, .mod-primary)::before {
   content: "";
   position: absolute;
   top: 0;
@@ -3827,7 +3935,7 @@ html body.obsidian-app .titlebar-text {
   background-color: var(--background-secondary);
 }
 
-html body.obsidian-app:not(.is-mobile) .workspace-ribbon.mod-left {
+html body.obsidian-app:not(.is-mobile) .workspace-ribbon:is(.mod-left, .mod-primary) {
   border-right: var(--border-width) solid var(--aubade-divider-color);
 }
 
@@ -4299,11 +4407,11 @@ html body.obsidian-app.hide-ribbon:not(.is-mobile) .workspace-sidedock-vault-pro
   z-index: 40;
 }
 
-html body.obsidian-app.hide-ribbon:not(.is-mobile):has(.workspace-ribbon.mod-left:hover) .workspace-sidedock-vault-profile {
+html body.obsidian-app.hide-ribbon:not(.is-mobile):has(.workspace-ribbon:is(.mod-left, .mod-primary):hover) .workspace-sidedock-vault-profile {
   border-top-color: var(--aubade-divider-color);
 }
 
-html body.obsidian-app.hide-ribbon:not(.is-mobile):has(.workspace-ribbon.mod-left:hover) .workspace-sidedock-vault-profile::before {
+html body.obsidian-app.hide-ribbon:not(.is-mobile):has(.workspace-ribbon:is(.mod-left, .mod-primary):hover) .workspace-sidedock-vault-profile::before {
   display: none;
 }
 
