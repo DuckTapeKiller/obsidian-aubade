@@ -1,7 +1,7 @@
 /* ================================================================= */
 /* AUBADE THEME by DuckTapeKiller                                    */
 /* https://github.com/DuckTapeKiller/aubade                          */
-/* 1.0.7                                               */
+/* 1.0.8                                              */
 /* ================================================================= */
 
 @font-face {
@@ -3285,6 +3285,50 @@ html body.obsidian-app .vertical-tab-nav-item.is-active {
   background-color: color-mix(in srgb, var(--background-modifier-hover), transparent 40%);
   color: var(--raw-text-secondary);
   font-weight: 700;
+}
+
+/* The lines between rows in the phone settings list are not dividers. Obsidian
+   hangs a border-bottom off each row's children — the title, the chevron and
+   the search-result text — and the icon carries none, so the line starts after
+   the icon and stops short of the row's right padding. The active row's
+   background does cover the whole row, which is why the two never line up.
+   Clear the child borders and give the row itself a real divider; it then sits
+   on the same edges as the background. Phone only, matching the stock rule. */
+html body.obsidian-app.is-phone .modal.mod-settings .vertical-tab-nav-item-title,
+html body.obsidian-app.is-phone .modal.mod-settings .vertical-tab-nav-item-chevron,
+html body.obsidian-app.is-phone .modal.mod-settings .setting-search-result-tab-text {
+  border-bottom: none;
+}
+
+html body.obsidian-app.is-phone .modal.mod-settings .vertical-tab-nav-item {
+  border-bottom: var(--setting-items-divider-width) solid var(--setting-items-divider-color);
+}
+
+/* Keeping the width and only dropping the colour holds every row the same
+   height, including the search results, which size themselves. */
+html body.obsidian-app.is-phone .modal.mod-settings .vertical-tab-nav-item:last-child {
+  border-bottom-color: transparent;
+}
+
+/* The same trick again on the settings pages themselves. Obsidian does not put
+   a divider between options either; it floats an absolutely positioned
+   ::before above each row, inset by --setting-items-padding-x on both sides
+   and offset upward by --border-width, which this theme sets to 2px. So the
+   line sits short of the card on the left and the right and hovers in the gap
+   above the row instead of resting on its edge. Drop the pseudo-element and
+   give the row a real border-top, which spans the card. */
+html body.obsidian-app.is-mobile .setting-group .setting-item:not(.setting-item-heading)::before {
+  content: none;
+}
+
+html body.obsidian-app.is-mobile .setting-group .setting-item:not(.setting-item-heading) {
+  border-top: var(--setting-items-divider-width) solid var(--setting-items-divider-color);
+}
+
+/* Colour rather than width again, so the first row is the same height as the
+   rest and the card does not shift. */
+html body.obsidian-app.is-mobile .setting-group .setting-item:not(.setting-item-heading):first-child {
+  border-top-color: transparent;
 }
 
 html body.obsidian-app .vertical-tab-header-group-title {
