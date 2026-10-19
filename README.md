@@ -1,5 +1,7 @@
 # Aubade
 
+<a href="https://community.obsidian.md/themes/aubade"><picture><source media="(prefers-color-scheme: dark)" srcset="assets/get-it-on-obsidian-dark.svg"><img alt="Get it on Obsidian" src="assets/get-it-on-obsidian.svg"></picture></a>
+
 [![GitHub Repo stars](https://img.shields.io/github/stars/ducktapekiller/obsidian-aubade?style=flat&logo=obsidian&color=%23f39c12)](https://github.com/ducktapekiller/obsidian-aubade/stargazers)
 [![GitHub issues](https://img.shields.io/github/issues/DuckTapeKiller/obsidian-aubade?logo=obsidian&color=%23f39c12)](https://github.com/DuckTapeKiller/obsidian-aubade/issues)
 [![GitHub closed issues](https://img.shields.io/github/issues-closed/DuckTapeKiller/obsidian-aubade?logo=obsidian&color=%23f39c12)](https://github.com/DuckTapeKiller/obsidian-aubade/issues?q=is%3Aissue+is%3Aclosed)
